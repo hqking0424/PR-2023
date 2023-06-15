@@ -187,8 +187,8 @@ best mae: 5.97, best mse: 7.57, best_rmae: 4.50, best_rmse: 5.65, best_r2: 0.896
 在玉米穗数据集上的训练结果：<br>
 ````
 best mae: 5.31, best mse: 8.98, best_rmae: 35.83, best_rmse: 89.62, best_r2: 0.8938
-模型性能有一定的提升。<br><br>
 ````
+模型性能有一定的提升。<br><br>
 在麦穗数据集上的训练结果：<br>
 ````
 best mae: 6.22, best mse: 7.66, best_rmae: 4.66, best_rmse: 5.75, best_r2: 0.8780
