@@ -145,6 +145,65 @@ best mae: 5.05, best mse: 9.55, best_rmae: 28.90, best_rmse: 60.02, best_r2: 0.8
 ````
 性能同样有不错的提升。<br>
 
+### 改变学习率
+原模型优化器默认采用SGD算法，其中使用的学习率Learning_Rate=0.01，考虑改变学习率能否提升模型性能。<br>
+增大学习率，取Learning_Rate=0.012：<br>
+在玉米穗数据集上的训练结果：<br>
+在麦穗数据集上的训练结果：<br>
+````
+best mae: 4.68, best mse: 5.83, best_rmae: 3.53, best_rmse: 4.38, best_r2: 0.9150
+````
+模型性能略有下降。<br><br>
+减小学习率，取Learning_Rate=0.008：<br>
+在玉米穗数据集上的训练结果：<br>
+在麦穗数据集上的训练结果：<br>
+````
+best mae: 5.50, best mse: 6.65, best_rmae: 4.16, best_rmse: 4.97, best_r2: 0.9044
+````
+模型性能下降。<br><br>
+
+### 改变衰减权重
+原模型优化器默认采用SGD算法，其中使用的权重衰减Weight_Decay=0.0005，考虑改变权重衰减能否提升模型性能。<br>
+增大衰减权重，取Weight_Decay=0.0008：<br>
+在玉米穗数据集上的训练结果：<br>
+在麦穗数据集上的训练结果：<br>
+````
+best mae: 5.97, best mse: 7.57, best_rmae: 4.50, best_rmse: 5.65, best_r2: 0.8966
+````
+模型性能下降。<br><br>
+减小衰减权重，取Weight_Decay=0.0002:<br>
+在玉米穗数据集上的训练结果：<br>
+在麦穗数据集上的训练结果：<br>
+````
+best mae: 6.22, best mse: 7.66, best_rmae: 4.66, best_rmse: 5.75, best_r2: 0.8780
+````
+模型性能下降。<br><br>
+
+### 改变批次大小
+原模型采用Batch_Size=9,考虑改变批次大小能否提升模型性能。以麦穗数据集为例进行训练。<br>
+增大批次大小，令Btach_Size=10:<br>
+````
+best mae: 4.65, best mse: 5.51, best_rmae: 3.53, best_rmse: 4.22, best_r2: 0.9251
+````
+增大批次大小，理论上减少训练时间，增加系统稳定但，但实测性能下降，可能无法继续优化模型性能。<br><br>
+减小批次大小，令Btach_Size=8:<br>
+````
+best mae: 4.36, best mse: 5.42, best_rmae: 3.34, best_rmse: 4.21, best_r2: 0.9226
+````
+各项指标均有一定的提升，模型性能得到改善。<br><br>
+进一步减少批次大小，令Btach_Size=7:<br>
+````
+best mae: 4.69, best mse: 5.78, best_rmae: 3.61, best_rmse: 4.47, best_r2: 0.9160
+````
+各项指标均变差，模型性能较初始下降，再减小批次大小可能无法提升性能。<br>
+结论：改变若干次批次大小进行训练，在Btach_Size=8获得了最佳的性能。<br><br>
+
+
+
+
+
+
+
 
 
 
