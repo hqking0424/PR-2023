@@ -212,120 +212,17 @@ best mae: 5.05, best mse: 6.32, best_rmae: 3.76, best_rmse: 4.66, best_r2: 0.916
 模型性能略有下降。<br><br>
 选取不同的种子数，模型表现出来的性能稍有不同。虽然未能达到优化模型的目的，但体现出模型具有较好地鲁棒性。<br><br>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Prepare Your Data
-**Wheat Ears Counting**
-1. Download the Wheat Ears Counting (WEC) dataset from: [Google Drive (2.5 GB)](https://drive.google.com/open?id=1XHcTqRWf-xD-WuBeJ0C9KfIN8ye6cnSs). I have reorganized the data, the credit of this dataset belongs to [this repository](https://github.com/simonMadec/Wheat-Ears-Detection-Dataset).
-2. Unzip the dataset and move it into the `./data` folder, the path structure should look like this:
+## 对模型的综合改进
+综合考虑以上多种模型改进的方法。<br>
+对于玉米穗数据集，考虑将激活函数ReLU替换为LeakyReLU，采用MSE作为损失函数，以Adam为优化器，将第一层最大值池化改为平均值池化，批次大小Batch_Size=8，其余与原模型保持一致。
+获得最终训练效果如下：<br>
 ````
-$./data/wheat_ears_counting_dataset
-├──── train
-│    ├──── images
-│    └──── labels
-├──── val
-│    ├──── images
-│    └──── labels
+best mae: 4.92, best mse: 9.06, best_rmae: 36.67, best_rmse: 82.96, best_r2: 0.8882
 ````
-
-**Maize Tassels Counting**
-1. Download the Maize Tassels Counting (MTC) dataset from: [Google Drive (1.8 GB)](https://drive.google.com/open?id=1IyGpYMS_6eClco2zpHKzW5QDUuZqfVFJ)
-2. Unzip the dataset and move it into the `./data` folder, the path structure should look like this:
+与原模型相比，mae指标从5.48下降到4.92，mse指标从10.06下降到9.06，相关系数增大，性能有不错的提升，提升程度约10.22%。<br><br>
+对于麦穗数据集，考虑使用动量Momentum=0.85，批次大小Batch_Size=8，其余与原模型保持一致。<br>
+获得的最终训练效果如下：<br>
 ````
-$./data/maize_counting_dataset
-├──── trainval
-│    ├──── images
-│    └──── labels
-├──── test
-│    ├──── images
-│    └──── labels
+best mae: 4.21, best mse: 5.14, best_rmae: 3.25, best_rmse: 4.11, best_r2: 0.9295
 ````
-
-**Sorghum Heads Counting**
-1. Download the Sorghum Heads Counting (SHC) dataset from: [Google Drive (152 MB)](https://drive.google.com/open?id=1msk8vYDyKdrYDq5zU1kKWOxfmgaXpy-P). The credit of this dataset belongs to [this repository](https://github.com/oceam/sorghum-head). I only use the two subsets that have dotted annotations available.
-2. Unzip the dataset and move it into the `./data` folder, the path structure should look like this:
-````
-$./data/sorghum_head_counting_dataset
-├──── original
-│    ├──── dataset1
-│    └──── dataset2
-├──── labeled
-│    ├──── dataset1
-│    └──── dataset2
-````
-
-## Inference
-Run the following command to reproduce our results of TasselNetv2+ on the WEC/MTC/SHC dataset:
-
-    sh config/hl_wec_eval.sh
-    
-    sh config/hl_mtc_eval.sh
-    
-    sh config/hl_shc_eval.sh
-    
-- Results are saved in the path `./results/$dataset/$exp/$epoch`.
-  
-## Training
-Run the following command to train TasselNetv2+ on the on the WEC/MTC/SHC dataset:
-
-    sh config/hl_wec_train.sh
-    
-    sh config/hl_mtc_train.sh
-    
-    sh config/hl_shc_train.sh
-    
-    
-## Play with Your Own Dataset
-To use this framework on your own dataset, you may need to:
-1. Annotate your data with dotted annotations. I recommend the [VGG Image Annotator](http://www.robots.ox.ac.uk/~vgg/software/via/);
-2. Generate train/validation list following the example in `gen_trainval_list.py`;
-3. Write your dataloader following example codes in `hldataset.py`;
-4. Compute the mean and standard deviation of RGB on the training set;
-5. Create a new entry in the `dataset_list` in `hltrainval.py`;
-6. Create a new `your_dataset.sh` following examples in `./config` and modify the hyper-parameters (e.g., batch size, crop size) if applicable.
-7. Train and test your model. Happy playing:)
-
-## Citation
-If you find this work or code useful for your research, please cite:
-```
-@article{lu2020tasselnetv2plus,
-  title={TasselNetV2+: A fast implementation for high-throughput plant counting from high-resolution RGB imagery},
-  author={Lu, Hao and Cao, Zhiguo},
-  journal={Frontiers in Plant Science},
-  year={2020}
-}
-
-@article{xiong2019tasselnetv2,
-  title={TasselNetv2: in-field counting of wheat spikes with context-augmented local regression networks},
-  author={Xiong, Haipeng and Cao, Zhiguo and Lu, Hao and Madec, Simon and Liu, Liang and Shen, Chunhua},
-  journal={Plant Methods},
-  volume={15},
-  number={1},
-  pages={150},
-  year={2019},
-  publisher={Springer}
-}
-```
-
-## Permission
-This code is only for non-commercial purposes. Please contact Hao Lu (hlu@hust.edu.cn) if you are interested in commerial use.
+与原模型相比，与原模型相比，mae指标从4.44下降到4.21，mse指标从5.41下降到5.14，性能有不错的提升，提升程度约4.51%。<br><br>
