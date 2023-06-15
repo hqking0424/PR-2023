@@ -1,7 +1,7 @@
 # Model Refinement on TasselNetv2+ 模型改进
 
 <p align="center">
-  <img src="plant_counting.png" width="825"/>
+  <img src="计数结果示例.jpg" width="825"/>
 </p>
 基于陆昊老师的TasselNetv2+植物计数网络。<br>
 本章中提出了一些方法，试图从算法类型，网络结构，参数大小三个角度出发，寻找提升模型性能的方法。<br>   
