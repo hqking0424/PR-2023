@@ -7,15 +7,19 @@
 本章中提出了一些方法，试图从算法类型，网络结构，参数大小三个角度出发，寻找提升模型性能的方法。<br>   
 由于原模型对在高粱穗数据集上的表现已经较好，对改进模型的训练主要在玉米穗数据集和麦穗数据集上进行。
 
+## 改变算法类型
+### 改变激活函数
+  原模型卷积层激活函数为ReLU，考虑将其更换为LeakyReLU是否能提升模型性能。
+  在玉米穗数据集上的训练结果：<br>
+  best mae: 5.19, best mse: 9.13, best_rmae: 37.67, best_rmse: 82.45, best_r2: 0.8861<br>
+  与原模型相比，mae指标从5.48下降到5.19，mse指标从10.06下降到9.13，性能有一定的提升。<br>
+  在麦穗数据集上的训练结果：<br>
+  best mae: 5.93, best mse: 7.81, best_rmae: 4.39, best_rmse: 5.68, best_r2: 0.8612<br>
+  很遗憾，各项性能指标都变差了。<br>
+  结论：更换激活函数为LeakyReLU能一定程度提升模型在玉米穗数据集上的性能。<br>
 
-## Highlights
-- **Highly Efficient:** TasselNetv2+ runs an order of magnitude faster than [TasselNetv2](https://link.springer.com/article/10.1186/s13007-019-0537-2) with around 30fps on image resolution of 1980×1080 on a single GTX 1070;
-- **Effective:** It retrains the same level of counting accuracy compared to its counterpart TasselNetv2;
-- **Easy to Use:** Pretrained plant counting models are included in this repository.
+### 改变损失函数
 
-
-## Installation
-The code has been tested on Python 3.7.4 and PyTorch 1.2.0. Please follow the official instructions to configure your environment. See other required packages in `requirements.txt`.
 
 ## Prepare Your Data
 **Wheat Ears Counting**
