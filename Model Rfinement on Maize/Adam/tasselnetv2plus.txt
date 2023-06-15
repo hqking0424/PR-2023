@@ -1,0 +1,192 @@
+image_scale :	 0.00392156862745098
+image_mean :	 [[[0.3859 0.4905 0.2895]]]
+image_std :	 [[[0.1718 0.1712 0.1518]]]
+scales :	 [0.7, 1, 1.3]
+shorter_side :	 224
+data_dir :	 ./data/maize_counting_dataset
+dataset :	 mtc
+exp :	 tasselnetv2plus
+data_list :	 ./data/maize_counting_dataset/train.txt
+data_val_list :	 ./data/maize_counting_dataset/test.txt
+restore_from :	 ./snapshots/mtc/tasselnetv2plus/model_best.pth.tar
+snapshot_dir :	 ./snapshots/mtc/tasselnetv2plus
+result_dir :	 ./results/mtc/tasselnetv2plus
+save_output :	 False
+input_size :	 64
+output_stride :	 8
+resize_ratio :	 0.125
+model :	 tasselnetv2plus
+use_pretrained :	 False
+freeze_bn :	 False
+sync_bn :	 False
+optimizer :	 sgd
+batch_size :	 9
+milestones :	 [200, 400]
+crop_size :	 (256, 256)
+evaluate_only :	 False
+learning_rate :	 0.01
+momentum :	 0.95
+weight_decay :	 0.0005
+mult :	 1
+num_epochs :	 500
+num_workers :	 0
+print_every :	 10
+random_seed :	 2020
+val_every :	 10
+image_scale :	 0.00392156862745098
+image_mean :	 [[[0.3859 0.4905 0.2895]]]
+image_std :	 [[[0.1718 0.1712 0.1518]]]
+scales :	 [0.7, 1, 1.3]
+shorter_side :	 224
+data_dir :	 ./data/maize_counting_dataset
+dataset :	 mtc
+exp :	 tasselnetv2plus
+data_list :	 ./data/maize_counting_dataset/train.txt
+data_val_list :	 ./data/maize_counting_dataset/test.txt
+restore_from :	 ./snapshots/mtc/tasselnetv2plus/model_best.pth.tar
+snapshot_dir :	 ./snapshots/mtc/tasselnetv2plus
+result_dir :	 ./results/mtc/tasselnetv2plus
+save_output :	 False
+input_size :	 64
+output_stride :	 8
+resize_ratio :	 0.125
+model :	 tasselnetv2plus
+use_pretrained :	 False
+freeze_bn :	 False
+sync_bn :	 False
+optimizer :	 sgd
+batch_size :	 9
+milestones :	 [200, 400]
+crop_size :	 (256, 256)
+evaluate_only :	 False
+learning_rate :	 0.01
+momentum :	 0.95
+weight_decay :	 0.0005
+mult :	 1
+num_epochs :	 500
+num_workers :	 0
+print_every :	 10
+random_seed :	 2020
+val_every :	 10
+image_scale :	 0.00392156862745098
+image_mean :	 [[[0.3859 0.4905 0.2895]]]
+image_std :	 [[[0.1718 0.1712 0.1518]]]
+scales :	 [0.7, 1, 1.3]
+shorter_side :	 224
+data_dir :	 ./data/maize_counting_dataset
+dataset :	 mtc
+exp :	 tasselnetv2plus
+data_list :	 ./data/maize_counting_dataset/train.txt
+data_val_list :	 ./data/maize_counting_dataset/test.txt
+restore_from :	 ./snapshots/mtc/tasselnetv2plus/model_best.pth.tar
+snapshot_dir :	 ./snapshots/mtc/tasselnetv2plus
+result_dir :	 ./results/mtc/tasselnetv2plus
+save_output :	 False
+input_size :	 64
+output_stride :	 8
+resize_ratio :	 0.125
+model :	 tasselnetv2plus
+use_pretrained :	 False
+freeze_bn :	 False
+sync_bn :	 False
+optimizer :	 sgd
+batch_size :	 9
+milestones :	 [200, 400]
+crop_size :	 (256, 256)
+evaluate_only :	 False
+learning_rate :	 0.01
+momentum :	 0.95
+weight_decay :	 0.0005
+mult :	 1
+num_epochs :	 500
+num_workers :	 0
+print_every :	 10
+random_seed :	 2020
+val_every :	 10
+image_scale :	 0.00392156862745098
+image_mean :	 [[[0.3859 0.4905 0.2895]]]
+image_std :	 [[[0.1718 0.1712 0.1518]]]
+scales :	 [0.7, 1, 1.3]
+shorter_side :	 224
+data_dir :	 ./data/maize_counting_dataset
+dataset :	 mtc
+exp :	 tasselnetv2plus
+data_list :	 ./data/maize_counting_dataset/train.txt
+data_val_list :	 ./data/maize_counting_dataset/test.txt
+restore_from :	 ./snapshots/mtc/tasselnetv2plus/model_best.pth.tar
+snapshot_dir :	 ./snapshots/mtc/tasselnetv2plus
+result_dir :	 ./results/mtc/tasselnetv2plus
+save_output :	 False
+input_size :	 64
+output_stride :	 8
+resize_ratio :	 0.125
+model :	 tasselnetv2plus
+use_pretrained :	 False
+freeze_bn :	 False
+sync_bn :	 False
+optimizer :	 sgd
+batch_size :	 9
+milestones :	 [200, 400]
+crop_size :	 (256, 256)
+evaluate_only :	 False
+learning_rate :	 0.01
+momentum :	 0.95
+weight_decay :	 0.0005
+mult :	 1
+num_epochs :	 500
+num_workers :	 0
+print_every :	 10
+random_seed :	 2020
+val_every :	 10
+epoch: 10, mae: 21.77, mse: 28.00, rmae: 65.50%, rmse: 68.74%, r2: 0.6857
+epoch: 20, mae: 22.85, mse: 26.17, rmae: 279.57%, rmse: 620.09%, r2: 0.5496
+epoch: 30, mae: 11.57, mse: 16.91, rmae: 130.83%, rmse: 296.36%, r2: 0.5965
+epoch: 40, mae: 14.58, mse: 20.37, rmae: 79.40%, rmse: 155.22%, r2: 0.7297
+epoch: 50, mae: 11.79, mse: 15.47, rmae: 111.18%, rmse: 296.17%, r2: 0.7648
+epoch: 60, mae: 12.94, mse: 18.56, rmae: 62.25%, rmse: 135.31%, r2: 0.7235
+epoch: 70, mae: 10.46, mse: 13.67, rmae: 120.92%, rmse: 293.12%, r2: 0.8308
+epoch: 80, mae: 11.39, mse: 18.14, rmae: 43.37%, rmse: 74.25%, r2: 0.6941
+epoch: 90, mae: 10.94, mse: 16.05, rmae: 45.57%, rmse: 97.16%, r2: 0.7860
+epoch: 100, mae: 8.93, mse: 12.80, rmae: 40.13%, rmse: 55.94%, r2: 0.8616
+epoch: 110, mae: 11.90, mse: 13.76, rmae: 160.40%, rmse: 371.58%, r2: 0.8738
+epoch: 120, mae: 13.08, mse: 18.30, rmae: 45.41%, rmse: 60.83%, r2: 0.7739
+epoch: 130, mae: 8.23, mse: 10.68, rmae: 73.49%, rmse: 155.63%, r2: 0.8797
+epoch: 140, mae: 6.32, mse: 10.98, rmae: 46.37%, rmse: 110.79%, r2: 0.8331
+epoch: 150, mae: 8.34, mse: 13.05, rmae: 50.32%, rmse: 101.07%, r2: 0.8387
+epoch: 160, mae: 9.89, mse: 13.31, rmae: 33.79%, rmse: 47.42%, r2: 0.9208
+epoch: 170, mae: 10.38, mse: 14.50, rmae: 52.36%, rmse: 114.17%, r2: 0.8725
+epoch: 180, mae: 13.01, mse: 19.47, rmae: 42.88%, rmse: 53.11%, r2: 0.7054
+epoch: 190, mae: 10.93, mse: 14.80, rmae: 52.73%, rmse: 93.18%, r2: 0.7998
+epoch: 200, mae: 5.95, mse: 9.84, rmae: 47.27%, rmse: 100.39%, r2: 0.8645
+epoch: 210, mae: 5.16, mse: 8.74, rmae: 33.98%, rmse: 80.98%, r2: 0.8983
+epoch: 220, mae: 6.20, mse: 10.39, rmae: 33.27%, rmse: 71.90%, r2: 0.8821
+epoch: 230, mae: 5.70, mse: 9.80, rmae: 29.03%, rmse: 54.40%, r2: 0.8826
+epoch: 240, mae: 6.86, mse: 11.57, rmae: 31.08%, rmse: 57.30%, r2: 0.8640
+epoch: 250, mae: 5.61, mse: 9.84, rmae: 30.09%, rmse: 60.90%, r2: 0.8866
+epoch: 260, mae: 5.98, mse: 10.22, rmae: 31.68%, rmse: 65.43%, r2: 0.8833
+epoch: 270, mae: 6.61, mse: 11.21, rmae: 31.64%, rmse: 60.17%, r2: 0.8666
+epoch: 280, mae: 5.57, mse: 9.88, rmae: 29.85%, rmse: 58.81%, r2: 0.8819
+epoch: 290, mae: 5.94, mse: 10.11, rmae: 27.29%, rmse: 46.97%, r2: 0.8920
+epoch: 300, mae: 5.58, mse: 9.60, rmae: 33.42%, rmse: 73.27%, r2: 0.8877
+epoch: 310, mae: 6.89, mse: 11.57, rmae: 35.55%, rmse: 79.38%, r2: 0.8542
+epoch: 320, mae: 6.55, mse: 11.11, rmae: 31.24%, rmse: 60.76%, r2: 0.8697
+epoch: 330, mae: 5.96, mse: 10.54, rmae: 31.25%, rmse: 63.80%, r2: 0.8687
+epoch: 340, mae: 7.08, mse: 12.05, rmae: 30.03%, rmse: 45.57%, r2: 0.8452
+epoch: 350, mae: 5.74, mse: 10.39, rmae: 29.31%, rmse: 54.49%, r2: 0.8661
+epoch: 360, mae: 6.71, mse: 11.45, rmae: 33.85%, rmse: 69.18%, r2: 0.8601
+epoch: 370, mae: 6.77, mse: 11.72, rmae: 38.11%, rmse: 84.62%, r2: 0.8383
+epoch: 380, mae: 5.86, mse: 9.83, rmae: 31.62%, rmse: 64.73%, r2: 0.8863
+epoch: 390, mae: 6.80, mse: 11.83, rmae: 28.86%, rmse: 46.30%, r2: 0.8490
+epoch: 400, mae: 5.50, mse: 9.63, rmae: 32.45%, rmse: 67.66%, r2: 0.8736
+epoch: 410, mae: 6.26, mse: 10.74, rmae: 31.40%, rmse: 63.33%, r2: 0.8711
+epoch: 420, mae: 6.31, mse: 10.80, rmae: 31.24%, rmse: 62.50%, r2: 0.8711
+epoch: 430, mae: 5.99, mse: 10.57, rmae: 30.88%, rmse: 61.62%, r2: 0.8694
+epoch: 440, mae: 5.60, mse: 9.65, rmae: 31.93%, rmse: 67.88%, r2: 0.8839
+epoch: 450, mae: 6.09, mse: 10.84, rmae: 31.39%, rmse: 62.90%, r2: 0.8625
+epoch: 460, mae: 5.84, mse: 10.24, rmae: 30.83%, rmse: 61.54%, r2: 0.8753
+epoch: 470, mae: 6.57, mse: 11.03, rmae: 30.15%, rmse: 54.20%, r2: 0.8740
+epoch: 480, mae: 5.96, mse: 10.43, rmae: 33.33%, rmse: 69.90%, r2: 0.8709
+epoch: 490, mae: 5.93, mse: 10.23, rmae: 32.05%, rmse: 65.19%, r2: 0.8803
+epoch: 500, mae: 5.78, mse: 10.29, rmae: 31.79%, rmse: 65.34%, r2: 0.8703
+best mae: 5.16, best mse: 8.74, best_rmae: 33.98, best_rmse: 80.98, best_r2: 0.8983
+overall best mae: 5.16, overall best mse: 8.74, overall best_rmae: 27.29, overall best_rmse: 45.57, overall best_r2: 0.9208
