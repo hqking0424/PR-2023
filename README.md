@@ -12,12 +12,12 @@
 原模型卷积层激活函数为ReLU，考虑将其更换为LeakyReLU是否能提升模型性能。<br><br>
 在玉米穗数据集上的训练结果：<br>
 ````
-best mae: 5.19, best mse: 9.13, best_rmae: 37.67, best_rmse: 82.45, best_r2: 0.8861<br>
+best mae: 5.19, best mse: 9.13, best_rmae: 37.67, best_rmse: 82.45, best_r2: 0.8861
 ````
 与原模型相比，mae指标从5.48下降到5.19，mse指标从10.06下降到9.13，性能有一定的提升。<br><br>
 在麦穗数据集上的训练结果：<br>
 ````
-best mae: 5.93, best mse: 7.81, best_rmae: 4.39, best_rmse: 5.68, best_r2: 0.8612<br>
+best mae: 5.93, best mse: 7.81, best_rmae: 4.39, best_rmse: 5.68, best_r2: 0.8612
 ````
 很遗憾，各项性能指标都变差了。<br><br>
 结论：更换激活函数为LeakyReLU能一定程度提升模型在玉米穗数据集上的性能。<br><br>
@@ -31,22 +31,22 @@ best mae: 5.93, best mse: 7.81, best_rmae: 4.39, best_rmse: 5.68, best_r2: 0.861
 平滑L1损失(Smooth L1 Loss, SLL)，优化的平均绝对误差。<br><br>
 采用MSE作为损失函数，在玉米穗数据集上的训练结果：<br>
 ````
-best mae: 5.90, best mse: 9.64, best_rmae: 44.87, best_rmse: 103.97, best_r2: 0.8776<br>
+best mae: 5.90, best mse: 9.64, best_rmae: 44.87, best_rmse: 103.97, best_r2: 0.8776
 ````
 性能一定程度上变差。<br><br>
 在麦穗数据集上训练的结果：<br>
 ````
-best mae: 4.47, best mse: 5.39, best_rmae: 3.42, best_rmse: 4.14, best_r2: 0.9212<br>
+best mae: 4.47, best mse: 5.39, best_rmae: 3.42, best_rmse: 4.14, best_r2: 0.9212
 ````
 与原模型相比，mae和rmae指标基本相同，mse和rmse指标有一定的提升。<br><br>
 结论：更换损失函数为MAE能一定程度提升模型在麦穗数据集上的性能。<br><br><br>
 采用SLL作为损失函数，在玉米穗数据集上的训练结果：<br>
 ````
-best mae: 6.06, best mse: 10.59, best_rmae: 40.69, best_rmse: 81.99, best_r2: 0.8449<br><br>
+best mae: 6.06, best mse: 10.59, best_rmae: 40.69, best_rmse: 81.99, best_r2: 0.8449
 ````
 在麦穗数据集上的训练结果：<br>
 ````
-best mae: 4.57, best mse: 5.67, best_rmae: 3.43, best_rmse: 4.21, best_r2: 0.9163<br>
+best mae: 4.57, best mse: 5.67, best_rmae: 3.43, best_rmse: 4.21, best_r2: 0.9163
 ````
 与原模型相比，在两个数据集上的性能指标都下降。<br><br>
 结论：采用SLL作为损失函数无法提升模型性能。<br><br>
@@ -57,12 +57,12 @@ best mae: 4.57, best mse: 5.67, best_rmae: 3.43, best_rmse: 4.21, best_r2: 0.916
 Adam和SGD都是常用的优化器，各有优缺点，具体选择应该根据具体问题和数据集的情况来决定。<br><br>
 Adam在玉米穗数据集上的训练结果：<br>
 ````
-best mae: 5.16, best mse: 8.74, best_rmae: 33.98, best_rmse: 80.98, best_r2: 0.8983<br>
+best mae: 5.16, best mse: 8.74, best_rmae: 33.98, best_rmse: 80.98, best_r2: 0.8983
 ````
 性能有不错的提升。<br><br>
 Adam在麦穗数据集上的训练结果：<br>
 ````
-best mae: 4.68, best mse: 5.81, best_rmae: 3.60, best_rmse: 4.52, best_r2: 0.9102<br>
+best mae: 4.68, best mse: 5.81, best_rmae: 3.60, best_rmse: 4.52, best_r2: 0.9102
 ````
 性能略有下降。<br><br>
 结论：Adam在玉米穗数据集上表现更优，SGD在麦穗数据集上表现更优。<br>
