@@ -16,7 +16,7 @@ best mae: 5.19, best mse: 9.13, best_rmae: 37.67, best_rmse: 82.45, best_r2: 0.8
 在麦穗数据集上的训练结果：<br>
 best mae: 5.93, best mse: 7.81, best_rmae: 4.39, best_rmse: 5.68, best_r2: 0.8612<br>
 很遗憾，各项性能指标都变差了。<br><br>
-结论：更换激活函数为LeakyReLU能一定程度提升模型在玉米穗数据集上的性能。<br>
+结论：更换激活函数为LeakyReLU能一定程度提升模型在玉米穗数据集上的性能。<br><br>
 
 
 ### 改变损失函数
@@ -37,12 +37,19 @@ best mae: 6.06, best mse: 10.59, best_rmae: 40.69, best_rmse: 81.99, best_r2: 0.
 在麦穗数据集上的训练结果：<br>
 best mae: 4.57, best mse: 5.67, best_rmae: 3.43, best_rmse: 4.21, best_r2: 0.9163<br>
 与原模型相比，在两个数据集上的性能指标都下降。<br><br>
-结论：采用SLL作为损失函数无法提升模型性能。<br>
+结论：采用SLL作为损失函数无法提升模型性能。<br><br>
 
 
-
-
-
+### 改变优化器
+原模型默认采用的优化器为SGD，但还提供了另一种方案Adam，考虑更换优化器是否能提升模型性能。<br>
+Adam和SGD都是常用的优化器，各有优缺点，具体选择应该根据具体问题和数据集的情况来决定。<br><br>
+Adam在玉米穗数据集上的训练结果：<br>
+best mae: 5.16, best mse: 8.74, best_rmae: 33.98, best_rmse: 80.98, best_r2: 0.8983<br>
+性能有不错的提升。<br><br>
+Adam在麦穗数据集上的训练结果：<br>
+best mae: 4.68, best mse: 5.81, best_rmae: 3.60, best_rmse: 4.52, best_r2: 0.9102<br>
+性能略有下降。<br><br>
+结论：Adam在玉米穗数据集上表现更优，SGD在麦穗数据集上表现更优。<br>
 
 ## Prepare Your Data
 **Wheat Ears Counting**
