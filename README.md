@@ -220,8 +220,8 @@ best mae: 5.05, best mse: 6.32, best_rmae: 3.76, best_rmse: 4.66, best_r2: 0.916
 best mae: 4.92, best mse: 9.06, best_rmae: 36.67, best_rmse: 82.96, best_r2: 0.8882
 ````
 原模型与改进模型指标对比如下表所示：<br>
-|MAE|MSE|RMAE|RMSE|R2
-|  ----  | ----  |
+|MAE|MSE|RMAE|RMSE|R2|
+| ---- | ---- |
 |原模型	|5.48|10.06|27.65|51.65|0.8607|
 |改进模型	|4.92|9.06|36.67|82.96|0.8882|
 
