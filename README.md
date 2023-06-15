@@ -29,13 +29,13 @@ best mae: 5.90, best mse: 9.64, best_rmae: 44.87, best_rmse: 103.97, best_r2: 0.
 性能一定程度上变差。<br><br>
 在麦穗数据集上训练的结果：<br>
 best mae: 4.47, best mse: 5.39, best_rmae: 3.42, best_rmse: 4.14, best_r2: 0.9212<br>
-与原模型相比，mae和rmae指标基本相同，mse和rmse指标有一定的提升。<br>
-结论：更换损失函数为MAE能一定程度提升模型在麦穗数据集上的性能。<br><br>
+与原模型相比，mae和rmae指标基本相同，mse和rmse指标有一定的提升。<br><br>
+结论：更换损失函数为MAE能一定程度提升模型在麦穗数据集上的性能。<br><br><br>
 采用SLL作为损失函数，在玉米穗数据集上的训练结果：<br>
 best mae: 6.06, best mse: 10.59, best_rmae: 40.69, best_rmse: 81.99, best_r2: 0.8449<br><br>
 在麦穗数据集上的训练结果：<br>
 best mae: 4.57, best mse: 5.67, best_rmae: 3.43, best_rmse: 4.21, best_r2: 0.9163<br>
-与原模型相比，在两个数据集上的性能指标都下降。<br>
+与原模型相比，在两个数据集上的性能指标都下降。<br><br>
 结论：采用SLL作为损失函数无法提升模型性能。<br>
 
 
