@@ -1,4 +1,4 @@
-# TasselNetv2+
+# Model Refinement on TasselNetv2+
 
 <p align="center">
   <img src="plant_counting.png" width="825"/>
