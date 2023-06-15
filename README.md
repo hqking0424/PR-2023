@@ -67,6 +67,24 @@ best mae: 4.68, best mse: 5.81, best_rmae: 3.60, best_rmse: 4.52, best_r2: 0.910
 性能略有下降。<br><br>
 结论：Adam在玉米穗数据集上表现更优，SGD在麦穗数据集上表现更优。<br>
 
+## 改变网络结构
+### 改变池化层类型
+原模型采用的池化均为最大值池化，参考他人的建议，考虑将第一个最大值池化更换为平均值池化能否提升模型性能。<br>
+在玉米穗数据集上的训练结果：<br>
+````
+best mae: 5.29, best mse: 9.47, best_rmae: 34.07, best_rmse: 80.53, best_r2: 0.8792
+````
+性能相比原模型有一定的提升。<br><br>
+在麦穗数据集上的训练结果：<br>
+````
+best mae: 5.03, best mse: 6.33, best_rmae: 3.77, best_rmse: 4.76, best_r2: 0.8875
+````
+性能略有下降。<br><br>
+结论：将第一层最大值池化改为平均值池化，在玉米穗数据集上的性能提升，在麦穗数据集上的性能略有下降。<br>
+
+
+
+
 ## Prepare Your Data
 **Wheat Ears Counting**
 1. Download the Wheat Ears Counting (WEC) dataset from: [Google Drive (2.5 GB)](https://drive.google.com/open?id=1XHcTqRWf-xD-WuBeJ0C9KfIN8ye6cnSs). I have reorganized the data, the credit of this dataset belongs to [this repository](https://github.com/simonMadec/Wheat-Ears-Detection-Dataset).
