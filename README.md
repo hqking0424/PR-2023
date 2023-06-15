@@ -11,7 +11,9 @@
 ### 改变激活函数
 原模型卷积层激活函数为ReLU，考虑将其更换为LeakyReLU是否能提升模型性能。<br><br>
 在玉米穗数据集上的训练结果：<br>
+````
 best mae: 5.19, best mse: 9.13, best_rmae: 37.67, best_rmse: 82.45, best_r2: 0.8861<br>
+````
 与原模型相比，mae指标从5.48下降到5.19，mse指标从10.06下降到9.13，性能有一定的提升。<br><br>
 在麦穗数据集上的训练结果：<br>
 best mae: 5.93, best mse: 7.81, best_rmae: 4.39, best_rmse: 5.68, best_r2: 0.8612<br>
