@@ -9,7 +9,7 @@
 
 注：以下模型改进中的训练结果可在Model Rfinement on Maize和Model Rfinement on Wheat文件夹中查看。<br>
 其中部分基于麦穗数据集的训练在Kaggle上完成，结果不便保存，未在此呈现。<br>
-如有任何疑问，意见或建议，请联系`张祎程`U202015006@hust.edu.cn。<br><br>
+如有任何疑问，意见或建议，请联系 `张祎程`U202015006@hust.edu.cn。<br><br>
 
 
 ## 改变算法类型
