@@ -31,9 +31,9 @@ best mae: 5.93, best mse: 7.81, best_rmae: 4.39, best_rmse: 5.68, best_r2: 0.861
 ### 改变损失函数
 原模型以torch.nn.L1loss即平均绝对误差为损失函数，考虑更换损失函数是否能提升模型性能。<br><br>
 机器学习中，损失函数(Loss Function)用于定义单个训练样本与真实值之间的误差。训练模型的目的即是最小化损失函数。<br>
-平均绝对误差(Mean Absolute Error, MAE)，也称L1loss，为目标值与预测值之差绝对值和的均值，<br>
-均方误差(Mean Squared Error, MSE)，也称L2loss，为目标值与预测值之差平方和的均值的二分之一,<br>
-平滑L1损失(Smooth L1 Loss, SLL)，优化的平均绝对误差。<br><br>
+`平均绝对误差`(Mean Absolute Error, MAE)，也称L1loss，为目标值与预测值之差绝对值和的均值，<br>
+`均方误差`(Mean Squared Error, MSE)，也称L2loss，为目标值与预测值之差平方和的均值的二分之一,<br>
+`平滑L1损失`(Smooth L1 Loss, SLL)，优化的平均绝对误差。<br><br>
 采用MSE作为损失函数，在玉米穗数据集上的训练结果：<br>
 ````
 best mae: 5.90, best mse: 9.64, best_rmae: 44.87, best_rmse: 103.97, best_r2: 0.8776
@@ -58,7 +58,7 @@ best mae: 4.57, best mse: 5.67, best_rmae: 3.43, best_rmse: 4.21, best_r2: 0.916
 
 
 ### 改变优化器
-原模型默认采用的优化器为SGD，但还提供了另一种方案Adam，考虑更换优化器是否能提升模型性能。<br>
+原模型默认采用的优化器为`SGD`，但还提供了另一种方案`Adam`，考虑更换优化器是否能提升模型性能。<br>
 Adam和SGD都是常用的优化器，各有优缺点，具体选择应该根据具体问题和数据集的情况来决定。<br><br>
 Adam在玉米穗数据集上的训练结果：<br>
 ````
