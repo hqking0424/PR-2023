@@ -7,7 +7,7 @@
 本章中提出了一些方法，试图从算法类型，网络结构，参数大小三个角度出发，寻找提升模型性能的方法。<br>   
 由于原模型对在高粱穗数据集上的表现已经较好，对改进模型的训练主要在玉米穗数据集和麦穗数据集上进行。<br><br>
 
-注：以下模型改进中的训练结果可在Model Rfinement on Maize和Model Rfinement on Wheat文件夹中查看。<br>
+以下模型改进中的训练结果可在Model Rfinement on Maize和Model Rfinement on Wheat文件夹中查看。<br>
 其中部分基于麦穗数据集的训练在Kaggle上完成，结果不便保存，未在此呈现。<br>
 如有任何疑问，意见或建议，请联系 `张祎程`U202015006@hust.edu.cn。<br><br>
 
