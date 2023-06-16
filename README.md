@@ -14,7 +14,7 @@
 
 ## 改变算法类型
 ### 改变激活函数
-原模型卷积层激活函数为ReLU，考虑将其更换为LeakyReLU是否能提升模型性能。<br><br>
+原模型卷积层激活函数为`ReLU`，考虑将其更换为`LeakyReLU`是否能提升模型性能。<br><br>
 在玉米穗数据集上的训练结果：<br>
 ````
 best mae: 5.19, best mse: 9.13, best_rmae: 37.67, best_rmse: 82.45, best_r2: 0.8861
