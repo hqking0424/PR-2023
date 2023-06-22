@@ -1,8 +1,8 @@
 # 人群计数模型P2PNet
 
 这个仓库包含了两部分内容：<br>
-* 一是基于人群计数模型**P2PNet**迁移到植物计数数据集上的代码，论文见[Rethinking Counting and Localization in Crowds: A Purely Point-Based Framework](https://arxiv.org/abs/2107.12746).<br>
-* 二是将**Global Wheat Head Detection Dataset**转换为适用于TasselNetv2+模型和P2PNet模型的代码，论文见[Global Wheat Head Detection (GWHD) dataset: a large and diverse dataset of high resolution RGB labelled images to develop and benchmark wheat head detection methods](https://arxiv.org/abs/2005.02162).
+* 一是基于人群计数模型**P2PNet**迁移到植物计数数据集上的代码，模型论文见[Rethinking Counting and Localization in Crowds: A Purely Point-Based Framework](https://arxiv.org/abs/2107.12746).<br>
+* 二是将**Global Wheat Head Detection Dataset**转换为适用于TasselNetv2+模型和P2PNet模型的代码，数据集论文见[Global Wheat Head Detection (GWHD) dataset: a large and diverse dataset of high resolution RGB labelled images to develop and benchmark wheat head detection methods](https://arxiv.org/abs/2005.02162).
  
 
 ## P2PNet的可视化测试结果
