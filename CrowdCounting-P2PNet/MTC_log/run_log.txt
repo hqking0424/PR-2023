@@ -1,0 +1,2 @@
+Eval Log Thu Jun 22 22:24:11 2023
+Namespace(backbone='vgg16_bn', batch_size=4, checkpoints_dir='./MTC_weights', clip_max_norm=0.1, data_root='./MTC', dataset_file='SHHA', eos_coef=0.5, epochs=500, eval=False, eval_freq=1, frozen_weights=None, gpu_id=0, line=2, lr=0.0001, lr_backbone=1e-05, lr_drop=3500, num_workers=0, output_dir='./MTC_log', point_loss_coef=0.0002, resume='', row=2, seed=42, set_cost_class=1, set_cost_point=0.05, start_epoch=0, tensorboard_dir='./MTC_log', weight_decay=0.0001)
