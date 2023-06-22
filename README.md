@@ -1,12 +1,11 @@
-# P2PNet (ICCV2021 Oral Presentation)
+# 人群计数模型P2PNet (ICCV2021 Oral Presentation)
 
-This repository contains codes for the official implementation in PyTorch of **P2PNet** as described in [Rethinking Counting and Localization in Crowds: A Purely Point-Based Framework](https://arxiv.org/abs/2107.12746).
+这个仓库包含了两部分内容：<br>
+* 一是基于人群计数模型**P2PNet**迁移到植物计数数据集上的代码，论文见[Rethinking Counting and Localization in Crowds: A Purely Point-Based Framework](https://arxiv.org/abs/2107.12746).<br>
+* 二是将**Global Wheat Head Detection Dataset**转换为适用于TasselNetv2+模型和P2PNet模型的代码，论文见[Global Wheat Head Detection (GWHD) dataset: a large and diverse dataset of high resolution RGB labelled images to develop and benchmark wheat head detection methods](https://arxiv.org/abs/2005.02162).
  
-A brief introduction of P2PNet can be found at [机器之心 (almosthuman)](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650827826&idx=3&sn=edd3d66444130fb34a59d08fab618a9e&chksm=84e5a84cb392215a005a3b3424f20a9d24dc525dcd933960035bf4b6aa740191b5ecb2b7b161&mpshare=1&scene=1&srcid=1004YEOC7HC9daYRYeUio7Xn&sharer_sharetime=1633675738338&sharer_shareid=7d375dccd3b2f9eec5f8b27ee7c04883&version=3.1.16.5505&platform=win#rd).
 
-The codes is tested with PyTorch 1.5.0. It may not run with other versions.
-
-## Visualized demos for P2PNet
+## P2PNet的可视化测试结果
 <img src="vis/congested1.png" width="1000"/>   
 <img src="vis/congested2.png" width="1000"/> 
 <img src="vis/congested3.png" width="1000"/> 
