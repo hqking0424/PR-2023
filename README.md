@@ -120,23 +120,9 @@ CSRNet由两个主要部分组成：一个是作为二维特征提取的前端�
 </div>
 
 由于植物计数也是使用密度图来进行呈现，因此自然而然地可以把人群计数的模型迁移到植物计数上，效果如下
-### Performance on the Wheat Ears Counting Dataset.
-| Method        | MAE   | MSE   |
-| ------------- | ----- | ----- |
-| TasselNetv2+  | 4.44  | 5.41  |
-| CSRNet        | 4.8   | 5.2   |
-
-### Performance on the sorghum_head_counting_dataset.
-| Method        | MAE   | MSE   |
-| ------------- | ----- | ----- |
-| TasselNetv2+  | 17.6  | 21.6  |
-| CSRNet        | 30.7  | 67.2   |
-
-## Performance on the Maize Tassels Counting Dataset.
-| Method        | MAE   | MSE   |
-| ------------- | ----- | ----- |
-| TasselNetv2+  | 5.48  | 10.06 |
-| P2PNet        | 10.3  | 20.7  |
+<div align=center>
+<img src="6.png"/>
+</div>
 
 在Wheat Ears Counting Dataset和Maize Tassels Counting Dataset数据集上二者效果相差不大，但是CSRnet的训练更加吃资源，训练时间更长，在sorghum_head_counting_dataset上该模型并没有TasselNetv2+效果好，分析应该是该数据集数量太少，在样本很少时深度网络性能会受到极大的影响，很容易发生过拟合
 
