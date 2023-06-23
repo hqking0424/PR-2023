@@ -104,7 +104,7 @@ class EarlyStopping:
         return points
     
 ```
-## 四、训练开源模型
+## 四、人群计数开源模型迁移到植物计数
 ###CSRNet
 CSRNet是一种数据驱动的深度学习方法，可以理解高度拥挤的场景，进行精确的计数估计，并提供高质量的密度图
 CSRNet由两个主要部分组成：一个是作为二维特征提取的前端卷积神经网络（即模型中的前端网络frontend ），另一个是用于后端的扩展CNN（后端网络backend），它使用扩展的核（空洞卷积操作）来传递更大的感受野，并代替池化操作，在目前主流的人群计数模型中一般都是使用密度图来呈现的，然而，如何生成准确的密度分布图是一个挑战。一个主要的困难来自于预测方式：由于生成的密度值遵循逐像素的预测，因此输出的密度图必须包含空间相关性，以便能够呈现最近像素之间的平滑过渡，CSRnet提出的改进为设计一个基于CNN的密度图生成器。模型使用纯卷积层作为主干来支持具有灵活分辨率的输入图像。为了限制网络的复杂度，在所有层中使用小尺寸的卷积滤波器（如3×3）。我们将VGG-16[21]的前10层作为前端，将空洞卷积层（dilated convolution layers）作为后端，以扩大感受野并在不丢失分辨率的情况下提取更深层的特征（因为不使用池化层），使用该架构跑出的效果达到了当时的soat
@@ -117,6 +117,41 @@ CSRNet由两个主要部分组成：一个是作为二维特征提取的前端�
 <img src="2.png"/>
 </div>
 
+由于植物计数也是使用密度图来进行呈现，因此自然而然地可以把人群计数的模型迁移到植物计数上，效果如下
+### Performance on the Wheat Ears Counting Dataset.
+| Method        | MAE   | MSE   |
+| ------------- | ----- | ----- |
+| TasselNetv2+  | 4.44  | 5.41  |
+| CSRNet        | 4.8   | 5.2   |
 
+### Performance on the sorghum_head_counting_dataset.
+| Method        | MAE   | MSE   |
+| ------------- | ----- | ----- |
+| TasselNetv2+  | 17.6  | 21.6  |
+| CSRNet        | 30.7  | 67.2   |
 
+## Performance on the Maize Tassels Counting Dataset.
+| Method        | MAE   | MSE   |
+| ------------- | ----- | ----- |
+| TasselNetv2+  | 5.48  | 10.06 |
+| P2PNet        | 10.3  | 20.7  |
 
+在Wheat Ears Counting Dataset和Maize Tassels Counting Dataset数据集上二者效果相差不大，但是CSRnet的训练更加吃资源，训练时间更长，在sorghum_head_counting_dataset上该模型并没有TasselNetv2+效果好，分析应该是该数据集数量太少，在样本很少时深度网络性能会受到极大的影响，很容易发生过拟合
+
+###Context-Aware-Crowd-Counting
+
+该模型是对CSRNet的一次改进，以往全卷积网络对一张图片的不同地方，通过不加区别地融合所有尺度的信息，使用相同尺度的卷积核，这样使得感受野都一样，这样无差别对待的问题在于这些方法忽略了图像尺度连续变化的事实，为了解决这个问题，我们需要让不同人头大小的尺度的信息反应到特征中来，不同的是，通过检测出feature中的细节信息作为attention，去优化特征，最终产生融合了尺度信息的context-aware feature，这产生了一种优于最先进的人群计数方法的算法（soat），尤其是在透视效果很强的情况下
+
+<div align=center>
+<img src="3.png"/>
+</div>
+RGB 图像被馈送到包含 VGG-16 网络前 10 层的 font-end 网络。生成的局部特征被分组为不同大小的块 y 平均池，然后是 1×1 卷积层。然后将它们上采样回原始特征大小以形成对比特征。对比度特征进一步用于学习比例感知特征的权重，然后将这些权重馈送到后端网络以生成最终的密度图，如网络第一部分的扩展版本所示，对比度特征是局部特征和上下文特征之间的区别。
+
+网络结构分为三段式，即front-end, context-aware-block，back-end三个部分，具体构建如下图
+<div align=center>
+<img src="4.png"/>
+</div>
+训练数据集结果如下
+<div align=center>
+<img src="5.png"/>
+</div>
