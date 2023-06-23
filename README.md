@@ -1,119 +1,107 @@
-# TasselNetv2+
+# PR-2023
+TasselNetv2+: A Fast Implementation for High-Throughput Plant Counting from High-Resolution RGB Imagery
 
-<p align="center">
-  <img src="plant_counting.png" width="825"/>
-</p>
+### 一、修改部分在CPU环境下运行代码会无法支持的代码，并对代码添加注释,由于代码过多，只列出部分，详情参考所提交的代码
+***gen_trainval_list.py***
 
-This repository includes the official implementation of TasselNetv2+ for plant counting, presented in paper:
+```python
+import os
+import glob
+import random
+root = './data/wheat_ears_counting_dataset'#文件目录
+image_folder = 'images'#目录下保存图片的目录
+label_folder = 'labels'#标签
+train = 'train'
+val = 'val'
 
-**TasselNetv2+: A Fast Implementation for High-Throughput Plant Counting from High-Resolution RGB Imagery**
+train_path = os.path.join(root, train)#训练路径
+with open('train.txt', 'w') as f:#打开该文件
+    for image_path in glob.glob(os.path.join(train_path, image_folder, '*.JPG')):#读取图片
+        im_path = image_path.replace(root, '')
+        gt_path = im_path.replace(image_folder, label_folder).replace('.JPG', '.xml')
+        f.write(im_path+'\t'+gt_path+'\n')
 
-Frontiers in Plant Science, 2020
+val_path = os.path.join(root, val)
+with open('val.txt', 'w') as f:
+    for image_path in glob.glob(os.path.join(val_path, image_folder, '*.JPG')):
+        im_path = image_path.replace(root, '')
+        gt_path = im_path.replace(image_folder, label_folder).replace('.JPG', '.xml')
+        f.write(im_path+'\t'+gt_path+'\n')
 
-[Hao Lu](https://sites.google.com/site/poppinace/) and Zhiguo Cao
-
-
-## Highlights
-- **Highly Efficient:** TasselNetv2+ runs an order of magnitude faster than [TasselNetv2](https://link.springer.com/article/10.1186/s13007-019-0537-2) with around 30fps on image resolution of 1980×1080 on a single GTX 1070;
-- **Effective:** It retrains the same level of counting accuracy compared to its counterpart TasselNetv2;
-- **Easy to Use:** Pretrained plant counting models are included in this repository.
-
-
-## Installation
-The code has been tested on Python 3.7.4 and PyTorch 1.2.0. Please follow the official instructions to configure your environment. See other required packages in `requirements.txt`.
-
-## Prepare Your Data
-**Wheat Ears Counting**
-1. Download the Wheat Ears Counting (WEC) dataset from: [Google Drive (2.5 GB)](https://drive.google.com/open?id=1XHcTqRWf-xD-WuBeJ0C9KfIN8ye6cnSs). I have reorganized the data, the credit of this dataset belongs to [this repository](https://github.com/simonMadec/Wheat-Ears-Detection-Dataset).
-2. Unzip the dataset and move it into the `./data` folder, the path structure should look like this:
-````
-$./data/wheat_ears_counting_dataset
-├──── train
-│    ├──── images
-│    └──── labels
-├──── val
-│    ├──── images
-│    └──── labels
-````
-
-**Maize Tassels Counting**
-1. Download the Maize Tassels Counting (MTC) dataset from: [Google Drive (1.8 GB)](https://drive.google.com/open?id=1IyGpYMS_6eClco2zpHKzW5QDUuZqfVFJ)
-2. Unzip the dataset and move it into the `./data` folder, the path structure should look like this:
-````
-$./data/maize_counting_dataset
-├──── trainval
-│    ├──── images
-│    └──── labels
-├──── test
-│    ├──── images
-│    └──── labels
-````
-
-**Sorghum Heads Counting**
-1. Download the Sorghum Heads Counting (SHC) dataset from: [Google Drive (152 MB)](https://drive.google.com/open?id=1msk8vYDyKdrYDq5zU1kKWOxfmgaXpy-P). The credit of this dataset belongs to [this repository](https://github.com/oceam/sorghum-head). I only use the two subsets that have dotted annotations available.
-2. Unzip the dataset and move it into the `./data` folder, the path structure should look like this:
-````
-$./data/sorghum_head_counting_dataset
-├──── original
-│    ├──── dataset1
-│    └──── dataset2
-├──── labeled
-│    ├──── dataset1
-│    └──── dataset2
-````
-
-## Inference
-Run the following command to reproduce our results of TasselNetv2+ on the WEC/MTC/SHC dataset:
-
-    sh config/hl_wec_eval.sh
-    
-    sh config/hl_mtc_eval.sh
-    
-    sh config/hl_shc_eval.sh
-    
-- Results are saved in the path `./results/$dataset/$exp/$epoch`.
-  
-## Training
-Run the following command to train TasselNetv2+ on the on the WEC/MTC/SHC dataset:
-
-    sh config/hl_wec_train.sh
-    
-    sh config/hl_mtc_train.sh
-    
-    sh config/hl_shc_train.sh
-    
-    
-## Play with Your Own Dataset
-To use this framework on your own dataset, you may need to:
-1. Annotate your data with dotted annotations. I recommend the [VGG Image Annotator](http://www.robots.ox.ac.uk/~vgg/software/via/);
-2. Generate train/validation list following the example in `gen_trainval_list.py`;
-3. Write your dataloader following example codes in `hldataset.py`;
-4. Compute the mean and standard deviation of RGB on the training set;
-5. Create a new entry in the `dataset_list` in `hltrainval.py`;
-6. Create a new `your_dataset.sh` following examples in `./config` and modify the hyper-parameters (e.g., batch size, crop size) if applicable.
-7. Train and test your model. Happy playing:)
-
-## Citation
-If you find this work or code useful for your research, please cite:
 ```
-@article{lu2020tasselnetv2plus,
-  title={TasselNetV2+: A fast implementation for high-throughput plant counting from high-resolution RGB imagery},
-  author={Lu, Hao and Cao, Zhiguo},
-  journal={Frontiers in Plant Science},
-  year={2020}
-}
+### 二、添加早停
+早停法的核心思想是在训练过程中检验模型在验证数据上的表现，一旦验证损失停止减小（或者连续几轮未明显减小），就停止训练。
 
-@article{xiong2019tasselnetv2,
-  title={TasselNetv2: in-field counting of wheat spikes with context-augmented local regression networks},
-  author={Xiong, Haipeng and Cao, Zhiguo and Lu, Hao and Madec, Simon and Liu, Liang and Shen, Chunhua},
-  journal={Plant Methods},
-  volume={15},
-  number={1},
-  pages={150},
-  year={2019},
-  publisher={Springer}
-}
+early_stop
+```python
+# -*- coding = utf-8 -*-
+# @TIME: 2023/4/23 19:21
+# @Author :hqKing
+# @File : early_stop.py
+import numpy as np
+import torch
+import os
+
+class EarlyStopping:
+    """Early stops the training if validation loss doesn't improve after a given patience."""
+    def __init__(self, save_path, patience=7, verbose=False, delta=0):
+        """
+        Args:
+            save_path : 模型保存文件夹
+            patience (int): How long to wait after last time validation loss improved.
+                            Default: 7
+            verbose (bool): If True, prints a message for each validation loss improvement.
+                            Default: False
+            delta (float): Minimum change in the monitored quantity to qualify as an improvement.
+                            Default: 0
+        """
+        self.save_path = save_path
+        self.patience = patience
+        self.verbose = verbose
+        self.counter = 0
+        self.best_score = None
+        self.early_stop = False
+        self.val_loss_min = np.Inf
+        self.delta = delta
+
+    def __call__(self, val_loss, model):
+
+        score = -val_loss
+
+        if self.best_score is None:
+            self.best_score = score
+            self.save_checkpoint(val_loss, model)
+        elif score < self.best_score + self.delta:
+            self.counter += 1
+            print(f'EarlyStopping counter: {self.counter} out of {self.patience}')
+            if self.counter >= self.patience:
+                self.early_stop = True
+        else:
+            self.best_score = score
+            self.save_checkpoint(val_loss, model)
+            self.counter = 0
+
+    def save_checkpoint(self, val_loss, model):
+        '''Saves model when validation loss decrease.'''
+        if self.verbose:
+            print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
+        path = os.path.join(self.save_path, 'best_network.pth')
+        torch.save(model.state_dict(), path)	# 这里会存储迄今最优模型的参数
+        self.val_loss_min = val_loss
+
 ```
+### 三、修复部分bug
+在haldataset代码中关于maize数据集的代码在读取bbs时存在bug，标注为点集，然而源代码中的处理是把标注当为boundbox来处理了，导致读取格式错误，修改后如下
+```python
 
-## Permission
-This code is only for non-commercial purposes. Please contact Hao Lu (hlu@hust.edu.cn) if you are interested in commerial use.
+    def bbs2points(self, bbs): 
+        points = []
+        for bb in bbs:
+            x, y = [float(b) for b in bb]#标注就是点，无需转换
+            # x2, y2 = x1+w-1, y1+h-1
+            # x, y = np.round((x1+x2)/2).astype(np.int32), np.round((y1+y2)/2).astype(np.int32)#求中心点
+            points.append([x, y])#添加到点集
+        return points
+    
+```
+### 四、训练开源模型
