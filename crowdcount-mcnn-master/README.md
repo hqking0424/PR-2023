@@ -12,31 +12,32 @@
 1.下载好植物计数的数据集。
 
 2.按照MCNN的格式，重命名图片格式为IMG_图片记号。
+![image](https://github.com/hqking0424/PR-2023/assets/96946926/6fcf3e61-3e20-486c-b17e-eec85cda41ce)
 
 3.修改切割图片的matlab文件，将图片数量修改为对应的图片数量。
+
+
+4.运行matlab文件，将原图切割为9部分：
+![image](https://github.com/hqking0424/PR-2023/assets/96946926/ab040294-b3a6-445a-87ec-1d8f7158c707)
 
 
 
 # 训练
 1.对MCNN的代码进行修改，使得能够稳定运行。
 
-2. 运行train.py
+2.运行train.py
 
-3. 校验产生的损失函数结果。
+3.校验产生的损失函数结果。
+![高粱结果](https://github.com/hqking0424/PR-2023/assets/96946926/63fe5537-f65f-444a-b8c3-7e7921c3f54d)
 
 
-# Other notes
-1. During training, the best model is chosen using error on the validation set. (It is not clear how the authors in the original implementation choose the best model).
-2. 10% of the training set is set asised for validation. The validation set is chosen randomly.
-3. The ground truth density maps are obtained using simple gaussian maps unlike the original method described in the paper.
-4. Following are the results on  Shanghai Tech A and B dataset:
+4.运行高粱的结果:
 		
                 |     |  MAE  |   MSE  |
                 ------------------------
-                | A   |  110  |   169  |
-                ------------------------
-                | B   |   25  |    44  |
+                |高粱 |  37.6 |   39.7 |
+                
 		
-5. Also, please take a look at our new work on crowd counting using cascaded cnn and high-level prior (https://github.com/svishwa/crowdcount-cascaded-mtl),  which has improved results as compared to this work. 
+
                
 
