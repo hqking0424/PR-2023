@@ -20,9 +20,11 @@ class RegressionModel(nn.Module):
 
         self.conv1 = nn.Conv2d(num_features_in, feature_size, kernel_size=3, padding=1)
         self.act1 = nn.ReLU()
+        self.dropout1 = nn.Dropout(0.5)
 
         self.conv2 = nn.Conv2d(feature_size, feature_size, kernel_size=3, padding=1)
         self.act2 = nn.ReLU()
+        self.dropout2 = nn.Dropout(0.5)
 
         self.conv3 = nn.Conv2d(feature_size, feature_size, kernel_size=3, padding=1)
         self.act3 = nn.ReLU()
@@ -36,9 +38,11 @@ class RegressionModel(nn.Module):
     def forward(self, x):
         out = self.conv1(x)
         out = self.act1(out)
+        out = self.dropout1(out)
 
         out = self.conv2(out)
         out = self.act2(out)
+        out = self.dropout1(out)
 
         out = self.output(out)
 
@@ -198,12 +202,42 @@ class Decoder(nn.Module):
 
         return [P3_x, P4_x, P5_x]
 
+class ChannelAttention(nn.Module):
+    def __init__(self, in_channels, reduction_ratio=16):
+        super(ChannelAttention, self).__init__()
+
+        self.avg_pool = nn.AdaptiveAvgPool2d(1)
+        self.fc1 = nn.Linear(in_channels, in_channels // reduction_ratio)
+        self.relu = nn.ReLU(inplace=True)
+        self.fc2 = nn.Linear(in_channels // reduction_ratio, in_channels)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        batch_size, channels, height, width = x.size()
+
+        # 计算全局平均池化
+        avg_out = self.avg_pool(x).view(batch_size, channels)
+
+        # 使用全连接层进行特征映射
+        fc1_out = self.fc1(avg_out)
+        fc1_out = self.relu(fc1_out)
+        fc2_out = self.fc2(fc1_out)
+
+        # 计算通道注意力权重
+        channel_attention_weights = self.sigmoid(fc2_out).view(batch_size, channels, 1, 1)
+
+        # 对特征进行加权融合
+        attended_features = x * channel_attention_weights
+
+        return attended_features
+
 
 # the defenition of the P2PNet model
 class P2PNet(nn.Module):
     def __init__(self, backbone, row=2, line=2):
         super().__init__()
         self.backbone = backbone
+        self.attention = ChannelAttention(in_channels=256)
         self.num_classes = 2
         # the number of all anchor points
         num_anchor_points = row * line
@@ -220,8 +254,10 @@ class P2PNet(nn.Module):
     def forward(self, samples: NestedTensor):
         # get the backbone features
         features = self.backbone(samples)
+
         # forward the feature pyramid
         features_fpn = self.fpn([features[1], features[2], features[3]])
+        features_fpn[1] = self.attention(features_fpn[1])
 
         batch_size = features[0].shape[0]
         # run the regression and classification branch
