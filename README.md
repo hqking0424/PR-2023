@@ -15,27 +15,27 @@ P2PNet的整体结构如下。在VGG16的基础上，首先引入了一个上采
 <img src="vis/net.png" width="1000"/>   
 
 ## Performance on the Wheat Ears Counting Dataset.
-| Method        | MAE   | MSE   |
-| ------------- | ----- | ----- |
-| TasselNetv2+  | 4.44  | 5.41  |
-| P2PNet        | 4.0   | 5.40  |
+| Method       | #Param. | MAE  | MSE  |
+|--------------|---------|------|------|
+| TasselNetv2+ | 0.5M    | 4.44 | 5.41 |
+| P2PNet       | 21.58M  | 4.0  | 5.40 |
 
 可以看出在Wheat Ears Counting Dataset上P2PNet的性能优于 TasselNetv2+.
 
 ## Performance on the Maize Tassels Counting Dataset.
-| Method        | MAE   | MSE   |
-| ------------- | ----- | ----- |
-| TasselNetv2+  | 5.48  | 10.06 |
-| P2PNet        | 9.19  | 9.38  |
+| Method       | #Param. | MAE  | MSE  |
+|--------------|---------|------|------|
+| TasselNetv2+ | 0.5M    | 5.48 | 10.06|
+| P2PNet       | 21.58M  | 9.19 | 9.38 |
 
 可以看出在Maize Tassels Counting Dataset上P2PNet的性能要比 TasselNetv2+差.
 
 ## Performance on the Global Wheat Head Detection Dataset.
 通过该仓库中global_wheat_detection_TasselNetv2+和global_wheat_detection_p2p中的代码，把原始数据标注格式转换成适用于TasselNetv2+模型和P2PNet模型的格式，然后进行训练得到如下结果：
-| Method        | MAE   | MSE   |
-| ------------- | ----- | ----- |
-| TasselNetv2+  | 6.23  | 7.25  |
-| P2PNet        | 4.06  | 5.68  |
+| Method       | #Param. | MAE  | MSE  |
+|--------------|---------|------|------|
+| TasselNetv2+ | 0.5M    | 6.23 | 7.25 |
+| P2PNet       | 21.58M  | 4.06 | 5.68 |
 
 可以看出在Global Wheat Head Detection Dataset上P2PNet性能更佳.
 
@@ -61,6 +61,27 @@ P2PNet的整体结构如下。在VGG16的基础上，首先引入了一个上采
 综上所述，P2PNet 在 Maize Tassels Counting Dataset 上的性能比 TasselNetv2+ 差可能是由于数据集特征的差异、不适合的数据预处理和增强技术以及训练策略和参数调整不合适等因素的综合影响。
 
 从数据图片中也可以清晰地看出，Wheat Ears Counting Dataset中的数据图片特征更加近似于人群计数数据图片的特征，目标点的分布较均匀、密集而且数量比较多。另外P2PNet采用“点”作为训练数据，虽然保留了最原始的高精度数据，但也欠缺了对于密度变化的考虑，因此在Maize Tassels Counting Dataset这种密度变化不均匀的数据上的性能不佳。
+
+## 模型改进和创新
+### Dropout和L2正则化
+在模型中添加Dropout层，并在训练过程中添加L2正则化方法，得到效果如下：
+| Method       | #Param. | MAE  | MSE  |
+|--------------|---------|------|------|
+| TasselNetv2+ | 0.5M    | 4.44 | 5.41 |
+| P2PNet_Orig  | 21.58M  | 4.0  | 5.40 |
+| P2PNet_Impr1 | 21.58M  | 4.16 | 5.40 |
+
+在训练的过程中，P2PNet_改1模型的mae指标在第30个epoch下降到6左右，而原P2PNet模型在100个epoch时mae才下降到6。但是最终的mae指标下降了4%，mse指标相较原来模型没有变化。即这次改进提升了模型的收敛速度，但是准确率略有下降。
+
+### 通道注意力
+在模型中添加通道注意力模块，以提升特征表达和鲁棒性，实验结果如下：
+| Method       | #Param. | MAE  | MSE  |
+|--------------|---------|------|------|
+| TasselNetv2+ | 0.5M    | 4.44 | 5.41 |
+| P2PNet_Orig  | 21.58M  | 4.0  | 5.40 |
+| P2PNet_Impr2 | 21.59M  | 3.94 | 5.33 |
+
+在训练过程中，P2PNet_改2模型在20个epoch时mae下降到6以下，最终mae和mse指标均有些许下降。即这次改进模型进一步提升提升了模型的收敛速度，并且稍许提升了模型的准确性。
 
 ## 植物计数VS人群计数
 ### 相同点
