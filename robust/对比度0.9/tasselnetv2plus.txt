@@ -1,0 +1,87 @@
+image_scale :	 0.00392156862745098
+image_mean :	 [[[0.4051 0.4392 0.2344]]]
+image_std :	 [[[0.2569 0.262  0.2287]]]
+scales :	 [0.7, 1, 1.3]
+shorter_side :	 224
+data_dir :	 ./data/wheat_ears_counting_dataset
+dataset :	 wec
+exp :	 tasselnetv2plus
+data_list :	 ./data/wheat_ears_counting_dataset/train.txt
+data_val_list :	 ./data/wheat_ears_counting_dataset/val.txt
+restore_from :	 ./snapshots/wec/tasselnetv2plus/model_best.pth.tar
+snapshot_dir :	 ./snapshots/wec/tasselnetv2plus
+result_dir :	 ./results/wec/tasselnetv2plus
+save_output :	 False
+input_size :	 64
+output_stride :	 8
+resize_ratio :	 0.167
+model :	 tasselnetv2plus
+use_pretrained :	 False
+freeze_bn :	 False
+sync_bn :	 False
+optimizer :	 sgd
+batch_size :	 8
+milestones :	 [200, 400]
+crop_size :	 (512, 512)
+evaluate_only :	 False
+learning_rate :	 0.01
+momentum :	 0.95
+weight_decay :	 0.0005
+mult :	 1
+num_epochs :	 500
+num_workers :	 0
+print_every :	 10
+random_seed :	 2020
+val_every :	 10
+epoch: 10, mae: 91.87, mse: 97.38, rmae: 71.50%, rmse: 77.72%, r2: 0.0006
+epoch: 20, mae: 55.41, mse: 57.79, rmae: 41.20%, rmse: 42.61%, r2: 0.3475
+epoch: 30, mae: 54.10, mse: 56.14, rmae: 40.28%, rmse: 41.50%, r2: 0.4324
+epoch: 40, mae: 17.92, mse: 19.89, rmae: 13.13%, rmse: 14.30%, r2: 0.6997
+epoch: 50, mae: 8.98, mse: 11.62, rmae: 6.91%, rmse: 9.10%, r2: 0.6860
+epoch: 60, mae: 11.05, mse: 13.57, rmae: 8.01%, rmse: 9.73%, r2: 0.7357
+epoch: 70, mae: 24.92, mse: 26.41, rmae: 18.34%, rmse: 19.11%, r2: 0.7913
+epoch: 80, mae: 5.92, mse: 7.37, rmae: 4.46%, rmse: 5.56%, r2: 0.8700
+epoch: 90, mae: 38.29, mse: 39.51, rmae: 28.50%, rmse: 29.13%, r2: 0.7308
+epoch: 100, mae: 7.58, mse: 9.46, rmae: 5.70%, rmse: 7.25%, r2: 0.8206
+epoch: 110, mae: 21.95, mse: 22.92, rmae: 16.69%, rmse: 17.61%, r2: 0.8886
+epoch: 120, mae: 22.24, mse: 23.39, rmae: 16.47%, rmse: 17.18%, r2: 0.8560
+epoch: 130, mae: 7.18, mse: 9.15, rmae: 5.41%, rmse: 6.92%, r2: 0.8658
+epoch: 140, mae: 15.64, mse: 16.90, rmae: 11.63%, rmse: 12.51%, r2: 0.8834
+epoch: 150, mae: 5.74, mse: 7.60, rmae: 4.49%, rmse: 6.08%, r2: 0.8543
+epoch: 160, mae: 4.80, mse: 5.96, rmae: 3.63%, rmse: 4.49%, r2: 0.9232
+epoch: 170, mae: 13.09, mse: 14.65, rmae: 9.85%, rmse: 11.16%, r2: 0.8830
+epoch: 180, mae: 11.85, mse: 13.19, rmae: 8.80%, rmse: 9.80%, r2: 0.9049
+epoch: 190, mae: 8.20, mse: 9.73, rmae: 5.95%, rmse: 6.97%, r2: 0.9058
+epoch: 200, mae: 6.15, mse: 7.39, rmae: 4.65%, rmse: 5.64%, r2: 0.8545
+epoch: 210, mae: 4.57, mse: 5.80, rmae: 3.51%, rmse: 4.51%, r2: 0.9191
+epoch: 220, mae: 4.70, mse: 5.93, rmae: 3.62%, rmse: 4.61%, r2: 0.9135
+epoch: 230, mae: 6.91, mse: 8.40, rmae: 5.25%, rmse: 6.50%, r2: 0.9195
+epoch: 240, mae: 6.31, mse: 7.67, rmae: 4.80%, rmse: 5.95%, r2: 0.9219
+epoch: 250, mae: 6.24, mse: 7.67, rmae: 4.67%, rmse: 5.82%, r2: 0.9218
+epoch: 260, mae: 5.59, mse: 6.77, rmae: 4.28%, rmse: 5.23%, r2: 0.9067
+epoch: 270, mae: 5.15, mse: 6.41, rmae: 3.92%, rmse: 4.99%, r2: 0.9170
+epoch: 280, mae: 5.43, mse: 6.73, rmae: 4.08%, rmse: 5.14%, r2: 0.9215
+epoch: 290, mae: 9.77, mse: 11.05, rmae: 7.34%, rmse: 8.35%, r2: 0.9262
+epoch: 300, mae: 4.82, mse: 6.04, rmae: 3.71%, rmse: 4.72%, r2: 0.9169
+epoch: 310, mae: 5.43, mse: 6.66, rmae: 4.06%, rmse: 5.02%, r2: 0.9220
+epoch: 320, mae: 4.68, mse: 5.91, rmae: 3.59%, rmse: 4.62%, r2: 0.9165
+epoch: 330, mae: 11.86, mse: 12.88, rmae: 8.92%, rmse: 9.73%, r2: 0.9299
+epoch: 340, mae: 9.03, mse: 10.27, rmae: 6.77%, rmse: 7.75%, r2: 0.9194
+epoch: 350, mae: 6.19, mse: 7.63, rmae: 4.73%, rmse: 5.91%, r2: 0.9199
+epoch: 360, mae: 4.61, mse: 5.81, rmae: 3.50%, rmse: 4.47%, r2: 0.9259
+epoch: 370, mae: 6.74, mse: 8.13, rmae: 5.12%, rmse: 6.27%, r2: 0.9210
+epoch: 380, mae: 5.76, mse: 7.09, rmae: 4.33%, rmse: 5.41%, r2: 0.9171
+epoch: 390, mae: 9.75, mse: 10.90, rmae: 7.28%, rmse: 8.12%, r2: 0.9095
+epoch: 400, mae: 13.88, mse: 14.76, rmae: 10.37%, rmse: 11.02%, r2: 0.9286
+epoch: 410, mae: 5.25, mse: 6.49, rmae: 3.96%, rmse: 5.00%, r2: 0.9265
+epoch: 420, mae: 6.09, mse: 7.45, rmae: 4.60%, rmse: 5.73%, r2: 0.9276
+epoch: 430, mae: 7.16, mse: 8.57, rmae: 5.43%, rmse: 6.59%, r2: 0.9270
+epoch: 440, mae: 7.03, mse: 8.49, rmae: 5.33%, rmse: 6.53%, r2: 0.9273
+epoch: 450, mae: 5.04, mse: 6.19, rmae: 3.81%, rmse: 4.78%, r2: 0.9269
+epoch: 460, mae: 5.41, mse: 6.69, rmae: 4.12%, rmse: 5.21%, r2: 0.9269
+epoch: 470, mae: 6.61, mse: 8.01, rmae: 5.00%, rmse: 6.16%, r2: 0.9274
+epoch: 480, mae: 8.16, mse: 9.59, rmae: 6.17%, rmse: 7.34%, r2: 0.9271
+epoch: 490, mae: 7.70, mse: 9.13, rmae: 5.82%, rmse: 7.00%, r2: 0.9258
+epoch: 500, mae: 5.79, mse: 7.14, rmae: 4.37%, rmse: 5.50%, r2: 0.9288
+best mae: 4.57, best mse: 5.80, best_rmae: 3.51, best_rmse: 4.51, best_r2: 0.9191
+overall best mae: 4.57, overall best mse: 5.80, overall best_rmae: 3.50, overall best_rmse: 4.47, overall best_r2: 0.9299
