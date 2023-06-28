@@ -1,62 +1,29 @@
-# Single Image Crowd Counting via Multi Column Convolutional Neural Network
-
-This is an unofficial implementation of CVPR 2016 paper ["Single Image Crowd Counting via Multi Column Convolutional Neural Network"](http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Zhang_Single-Image_Crowd_Counting_CVPR_2016_paper.pdf)
-
-# Installation
-1. Install pytorch
-2. Clone this repository
-  ```Shell
-  git clone https://github.com/svishwa/crowdcount-mcnn.git
-  ```
-  We'll call the directory that you cloned crowdcount-mcnn `ROOT`
+# MCNN多列卷积神经网络运行植物计数数据集
 
 
-# Data Setup
-1. Download ShanghaiTech Dataset from   
-   Dropbox:   https://www.dropbox.com/s/fipgjqxl7uj8hd5/ShanghaiTech.zip?dl=0
-   
-   Baidu Disk: http://pan.baidu.com/s/1nuAYslz
-2. Create Directory 
-  ```Shell
-  mkdir ROOT/data/original/shanghaitech/  
-  ```
-3. Save "part_A_final" under ROOT/data/original/shanghaitech/
-4. Save "part_B_final" under ROOT/data/original/shanghaitech/
-5. cd ROOT/data_preparation/
+# 模型原理
+1.MCNN克服了先前的模型中存在的运行条件苛刻，人群密集情况下运行性能较差的问题。
 
-   run create_gt_test_set_shtech.m in matlab to create ground truth files for test data
-6. cd ROOT/data_preparation/
+2.MCNN突破了原本的模型算法，采用了在没有背景分割的基础上实现了人群计数的方法。
 
-   run create_training_set_shtech.m in matlab to create training and validataion set along with ground truth files
+3.与此同时，MCNN包含了三列卷积网络，每一列卷积网络分别学习不同感受野的特征。
 
-# Test
-1. Follow steps 1,2,3,4 and 5 from Data Setup
-2. Download pre-trained model files:
+# 运行过程
+1.下载好植物计数的数据集。
 
-   [[Shanghai Tech A](https://www.dropbox.com/s/8bxwvr4cj4bh5d8/mcnn_shtechA_660.h5?dl=0)]
-   
-   [[Shanghai Tech B](https://www.dropbox.com/s/kqqkl0exfshsw8v/mcnn_shtechB_110.h5?dl=0)]
-   
-   Save the model files under ROOT/final_models
-   
-3. Run test.py
+2.按照MCNN的格式，重命名图片格式为IMG_图片记号。
 
-	a. Set save_output = True to save output density maps
-	
-	b. Errors are saved in  output directory
-
-# Training
-1. Follow steps 1,2,3,4 and 6 from Data Setup
-2. Run train.py
+3.修改切割图片的matlab文件，将图片数量修改为对应的图片数量。
 
 
-# Training with TensorBoard
-With the aid of [Crayon](https://github.com/torrvision/crayon),
-we can access the visualisation power of TensorBoard for any 
-deep learning framework.
 
-To use the TensorBoard, install Crayon (https://github.com/torrvision/crayon)
-and set `use_tensorboard = True` in `ROOT/train.py`.
+# 训练
+1.对MCNN的代码进行修改，使得能够稳定运行。
+
+2. 运行train.py
+
+3. 校验产生的损失函数结果。
+
 
 # Other notes
 1. During training, the best model is chosen using error on the validation set. (It is not clear how the authors in the original implementation choose the best model).
