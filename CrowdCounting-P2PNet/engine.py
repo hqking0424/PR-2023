@@ -83,6 +83,14 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
     criterion.train()
     metric_logger = utils.MetricLogger(delimiter="  ")
     metric_logger.add_meter('lr', utils.SmoothedValue(window_size=1, fmt='{value:.6f}'))
+    weight_decay = 1e-4
+
+    # Add L2 regularization to optimizer
+    if weight_decay > 0:
+        for name, param in model.named_parameters():
+            if 'bias' not in name:
+                param.data = torch.nn.functional.hardtanh(param.data)  # Apply weight decay only to weights, not biases
+
     # iterate all training samples
     for samples, targets in data_loader:
         samples = samples.to(device)
@@ -93,6 +101,14 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
         loss_dict = criterion(outputs, targets)
         weight_dict = criterion.weight_dict
         losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+
+        # Add L2 regularization to the losses
+        if weight_decay > 0:
+            l2_regularization = torch.tensor(0., device=device)
+            for param in model.parameters():
+                if param.requires_grad:
+                    l2_regularization += torch.norm(param, p=2)
+            losses += weight_decay * l2_regularization
 
         # reduce all losses
         loss_dict_reduced = utils.reduce_dict(loss_dict)
